@@ -13,7 +13,7 @@ RUN apk add ca-certificates wget graphviz
 RUN update-ca-certificates
 
 # Install Protege Server
-RUN wget --tries=3 --progress=bar:force:noscroll https://essential-cdn.s3.eu-west-2.amazonaws.com/protege/install_protege_3.5-Linux64-noJVM.bin
+RUN wget --tries=3 --progress=bar:force:noscroll https://cdn.enterprise-architecture.org/protege/install_protege_3.5-Linux64-noJVM.bin
 COPY support/protege-response.txt ./
 RUN chmod u+x install_protege_3.5-Linux64-noJVM.bin
 RUN ./install_protege_3.5-Linux64-noJVM.bin -i console -f protege-response.txt
@@ -21,13 +21,13 @@ RUN rm protege-response.txt
 RUN rm install_protege_3.5-Linux64-noJVM.bin 
 
 # Install EssentialEAM Installer
-RUN wget --tries=3 --progress=bar:force:noscroll https://essential-cdn.s3.eu-west-2.amazonaws.com/essential-widgets/essentialinstallupgrade67.jar
+RUN wget --tries=3 --progress=bar:force:noscroll https://cdn.enterprise-architecture.org/essential-widgets/essentialinstallupgrade67.jar
 COPY support/auto-install.xml ./
 RUN java -jar essentialinstallupgrade67.jar auto-install.xml
 
 # Install Essential View and Import Utilities
-RUN wget --tries=3 --progress=bar:force:noscroll https://essential-cdn.s3.eu-west-2.amazonaws.com/viewer/essential_viewer_6156.war
-RUN wget --tries=3 --progress=bar:force:noscroll https://essential-cdn.s3.eu-west-2.amazonaws.com/import-utility/essential_import_utility_256.war
+RUN wget --tries=3 --progress=bar:force:noscroll https://cdn.enterprise-architecture.org/viewer/essential_viewer_6156.war
+RUN wget --tries=3 --progress=bar:force:noscroll https://cdn.enterprise-architecture.org/import-utility/essential_import_utility_256.war
 RUN mv essential_viewer_6156.war /usr/local/tomcat/webapps/essential_viewer.war
 RUN mv essential_import_utility_256.war /usr/local/tomcat/webapps/essential_import_utility.war
 
